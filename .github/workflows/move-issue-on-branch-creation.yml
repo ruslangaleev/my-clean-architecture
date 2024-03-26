@@ -2,6 +2,9 @@ name: Move Issue to In Progress on Branch Creation
 
 on:
   create:
+    branches-ignore:
+      - 'main'
+      - 'develop'
 
 jobs:
   move_issue:
