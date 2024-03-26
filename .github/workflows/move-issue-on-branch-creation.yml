@@ -17,7 +17,7 @@ jobs:
         with:
           script: |
             const issueNumber = ${{ steps.get-issue-number.outputs.ISSUE_NUMBER }};
-            const projectName = "Your Project Name"; // Change this to your project name
+            const projectName = "Tesk project (Kanban)"; // Change this to your project name
             const columnName = "In Progress"; // The column name you want to move the issue to
             const token = "${{ secrets.GITHUB_TOKEN }}";
 
