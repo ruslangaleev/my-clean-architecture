@@ -4,50 +4,35 @@ on:
   create:
 
 jobs:
-  move-issue:
+  move_issue:
     runs-on: ubuntu-latest
-    if: github.event.ref_type == 'branch'
     steps:
-      - name: Extract issue number from branch name
-        id: get-issue-number
-        run: echo "::set-output name=ISSUE_NUMBER::$(echo ${{ github.ref }} | sed -n 's/.*issue-\([0-9]*\).*/\1/p')"
-      
-      - name: Move issue to In Progress
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const issueNumber = ${{ steps.get-issue-number.outputs.ISSUE_NUMBER }};
-            const projectName = "Tesk project (Kanban)"; // Change this to your project name
-            const columnName = "In Progress"; // The column name you want to move the issue to
-            const token = "${{ secrets.GITHUB_TOKEN }}";
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            const octokit = github.getOctokit(token);
-
-            // Find the project by name
-            const { data: projects } = await octokit.rest.projects.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
-            const project = projects.find(project => project.name === projectName);
-            if (!project) throw new Error(`Project "${projectName}" not found.`);
-
-            // Find the column by name
-            const { data: columns } = await octokit.rest.projects.listColumns({
-              project_id: project.id,
-            });
-            const column = columns.find(column => column.name === columnName);
-            if (!column) throw new Error(`Column "${columnName}" not found in project "${projectName}".`);
-
-            // Move the issue to the column
-            const { data: issues } = await octokit.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
-            const issue = issues.find(issue => issue.number == issueNumber);
-            if (!issue) throw new Error(`Issue number ${issueNumber} not found.`);
-
-            await octokit.rest.projects.createCard({
-              column_id: column.id,
-              content_id: issue.id,
-              content_type: "Issue",
-            });
+      - name: Move associated issue to In Progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IN_PROGRESS_COLUMN_ID: 'YOUR_IN_PROGRESS_COLUMN_ID'
+        run: |
+          echo "Branch name: $GITHUB_REF"
+          ISSUE_NUMBER=$(echo $GITHUB_REF | sed -n 's/refs\/heads\/.*-\([0-9]\+\)-.*/\1/p')
+          echo "Extracted issue number: $ISSUE_NUMBER"
+          
+          if [ ! -z "$ISSUE_NUMBER" ]; then
+            echo "Moving issue #$ISSUE_NUMBER to In Progress..."
+            
+            # Находим issue по номеру
+            ISSUE_ID=$(gh api search/issues --jq ".items[] | select(.number == $ISSUE_NUMBER) | .id" --q "repo:${GITHUB_REPOSITORY} is:issue")
+            echo "Found issue ID: $ISSUE_ID"
+            
+            if [ ! -z "$ISSUE_ID" ]; then
+              # Добавляем issue в колонку "In Progress"
+              gh api -X POST /projects/columns/$IN_PROGRESS_COLUMN_ID/cards -f content_id=$ISSUE_ID -f content_type=Issue
+              echo "Issue moved to In Progress."
+            else
+              echo "Issue ID not found."
+            fi
+          else
+            echo "No issue number extracted from branch name."
+          fi
