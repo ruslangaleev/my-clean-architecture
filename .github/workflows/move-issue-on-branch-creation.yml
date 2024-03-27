@@ -1,41 +1,14 @@
-name: Move Issue to In Progress on Branch Creation
-
+name: Move assigned card
 on:
-  create:
-    branches-ignore:
-      - 'main'
-      - 'develop'
-
+  issues:
+    types:
+      - assigned
 jobs:
-  move_issue:
+  move-assigned-card:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Move associated issue to In Progress
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IN_PROGRESS_COLUMN_ID: 'YOUR_IN_PROGRESS_COLUMN_ID'
-        run: |
-          echo "Branch name: $GITHUB_REF"
-          ISSUE_NUMBER=$(echo $GITHUB_REF | sed -n 's/refs\/heads\/.*-\([0-9]\+\)-.*/\1/p')
-          echo "Extracted issue number: $ISSUE_NUMBER"
-          
-          if [ ! -z "$ISSUE_NUMBER" ]; then
-            echo "Moving issue #$ISSUE_NUMBER to In Progress..."
-            
-            # Находим issue по номеру
-            ISSUE_ID=$(gh api search/issues --jq ".items[] | select(.number == $ISSUE_NUMBER) | .id" --q "repo:${GITHUB_REPOSITORY} is:issue")
-            echo "Found issue ID: $ISSUE_ID"
-            
-            if [ ! -z "$ISSUE_ID" ]; then
-              # Добавляем issue в колонку "In Progress"
-              gh api -X POST /projects/columns/$IN_PROGRESS_COLUMN_ID/cards -f content_id=$ISSUE_ID -f content_type=Issue
-              echo "Issue moved to In Progress."
-            else
-              echo "Issue ID not found."
-            fi
-          else
-            echo "No issue number extracted from branch name."
-          fi
+      - uses: alex-page/github-project-automation-plus@7ffb872c64bd809d23563a130a0a97d01dfa8f43
+        with:
+          project: Docs Work
+          column: In Progress
+          repo-token: ${{ secrets.TOKEN }}
