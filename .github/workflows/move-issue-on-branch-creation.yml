@@ -1,27 +1,23 @@
-name: Extract Issue Number from Branch Name
+name: Extract Number from Branch Name
 
 on:
-  push:
-    branches:
-      - '*'
+  create:
+    # Ограничение событий только созданием веток
     branches-ignore:
-      - main
-      - dev
-
+      - 'main'
+      - 'master'
+      
 jobs:
-  extract-issue-number:
+  extract-number:
     runs-on: ubuntu-latest
+    # Условие, которое гарантирует выполнение только при создании ветки
+    if: github.ref_type == 'branch'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Extract and Print Issue Number
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Extract Number from Branch Name
         run: |
           BRANCH_NAME="${GITHUB_REF#refs/heads/}"
-          ISSUE_NUMBER=$(echo $BRANCH_NAME | grep -o -E '^[0-9]+')
-          echo "Issue number extracted from branch name: $ISSUE_NUMBER"
-          echo "Issue number is $ISSUE_NUMBER" >> $GITHUB_ENV
-
-      - name: Use Issue Number in Another Step
-        run: |
-          echo "Using Issue Number: $ISSUE_NUMBER"
+          NUMBER=$(echo "$BRANCH_NAME" | grep -o -E '[0-9]+')
+          echo "Extracted number: $NUMBER"
