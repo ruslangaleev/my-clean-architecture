@@ -1,14 +1,16 @@
-name: Move assigned card
+name: Branch Workflow
+
 on:
-  issues:
-    types:
-      - assigned
+  create:
+
 jobs:
-  move-assigned-card:
+  check-branch:
     runs-on: ubuntu-latest
+    if: github.ref_type == 'branch' && github.ref_name != 'dev' && github.ref_name != 'main'
     steps:
-      - uses: alex-page/github-project-automation-plus@7ffb872c64bd809d23563a130a0a97d01dfa8f43
-        with:
-          project: Tesk project (Kanban)
-          column: In progress
-          repo-token: ${{ secrets.TOKEN }}
+      - name: Extract Issue Number from Branch Name
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          ISSUE_NUMBER=$(echo "$BRANCH_NAME" | grep -oE '^\d+')
+          echo "Issue number extracted from branch name is $ISSUE_NUMBER"
+          # Здесь добавьте команды для выполнения действий с номером задачи
