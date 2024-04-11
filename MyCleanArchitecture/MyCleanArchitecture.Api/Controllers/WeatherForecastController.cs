@@ -19,7 +19,6 @@ namespace MyCleanArchitecture.Api.Controllers
         /// </summary>
         public WeatherForecastController()
         {
-
         }
 
         /// <summary>

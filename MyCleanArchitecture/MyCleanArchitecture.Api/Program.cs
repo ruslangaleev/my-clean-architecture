@@ -1,4 +1,4 @@
-namespace MyCleanArchirecture
+namespace MyCleanArchitecture
 {
     /// <summary>
     /// Главный класс приложения.
