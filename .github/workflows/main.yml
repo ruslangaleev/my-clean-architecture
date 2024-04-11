@@ -24,6 +24,7 @@ jobs:
 
     - name: Build
       run: dotnet build --no-restore -c Release
+      working-directory: MyCleanArchitecture
 
     # - name: Test
     #   run: dotnet test --no-restore --verbosity normal
