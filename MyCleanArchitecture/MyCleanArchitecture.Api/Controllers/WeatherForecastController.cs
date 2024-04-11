@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyCleanArchirecture.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с погодой.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -13,11 +16,17 @@ namespace MyCleanArchirecture.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
+        /// </summary>
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
+        /// <summary>
+        /// Получает информацию о текущей погоде.
+        /// </summary>
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
