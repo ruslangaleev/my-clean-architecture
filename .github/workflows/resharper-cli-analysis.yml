@@ -32,4 +32,5 @@ jobs:
             ConvertToPrimaryConstructor
             UnusedMember.Global # член класса (например, метод, свойство, поле или событие), который не используется
             PropertyCanBeMadeInitOnly.Global 
+            SuggestVarOrType_SimpleTypes # Use explicit type (simple types)" on
           dotnetVersion: ${{ steps.setup-dotnet.outputs.dotnet-version }}
