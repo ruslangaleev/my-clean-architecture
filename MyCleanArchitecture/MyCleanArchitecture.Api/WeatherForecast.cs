@@ -1,4 +1,4 @@
-namespace MyCleanArchirectureApi
+namespace MyCleanArchirecture.Api
 {
     /// <summary>
     /// Информация о погоде.
