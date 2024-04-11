@@ -22,8 +22,12 @@ jobs:
     # - name: Restore dependencies
     #   run: dotnet restore
 
+    - name: Restore dependencies
+      run: dotnet restore MyCleanArchitecture.sln 
+      working-directory: MyCleanArchitecture
+
     - name: Build
-      run: dotnet build --no-restore -c Release
+      run: dotnet build --no-restore -c Release MyCleanArchitecture.sln
       working-directory: MyCleanArchitecture
 
     # - name: Test

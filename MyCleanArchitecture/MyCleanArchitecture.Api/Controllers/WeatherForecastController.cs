@@ -27,6 +27,7 @@ namespace MyCleanArchirecture.Controllers
         /// <summary>
         /// Получает информацию о текущей погоде.
         /// </summary>
+        /// <returns>Список всех прогнозов.</returns>
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
