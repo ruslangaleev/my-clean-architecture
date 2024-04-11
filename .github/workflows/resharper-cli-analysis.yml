@@ -18,12 +18,12 @@ jobs:
         with:
           dotnet-version: '8.0.x' # [3.1.x, 5.0.x, 6.0.x, 7.0.x, 8.0.xVPN
       - name: Restore
-        run: dotnet restore MyCleanArchitecture.Api/MyCleanArchitecture.Api.sln
+        run: dotnet restore MyCleanArchitecture/MyCleanArchitecture.sln
         # ReSharper CLI. Анализатор не определяет наличие комментариев к свойствам и методам
       - name: Inspect code
         uses: muno92/resharper_inspectcode@v1
         with:
-          solutionPath: MyCleanArchitecture.Api/MyCleanArchitecture.Api.sln
+          solutionPath: MyCleanArchitecture/MyCleanArchitecture.sln
           ignoreIssueType: |
             UnusedAutoPropertyAccessor.Global
             ArrangeNamespaceBody

@@ -14,7 +14,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.x' # Укажите нужную версию .NET Core
+        dotnet-version: '8.0.x' # Укажите нужную версию .NET Core
 
     # - name: Check style core
     #   run: dotnet build -c Release -warnaserror
@@ -22,8 +22,8 @@ jobs:
     # - name: Restore dependencies
     #   run: dotnet restore
 
-    # - name: Build
-    #   run: dotnet build --no-restore -c Release
+    - name: Build
+      run: dotnet build --no-restore -c Release
 
     # - name: Test
     #   run: dotnet test --no-restore --verbosity normal
