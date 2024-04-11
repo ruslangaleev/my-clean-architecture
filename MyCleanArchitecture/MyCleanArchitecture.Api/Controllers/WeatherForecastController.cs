@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyCleanArchirecture.Api.Controllers
+namespace MyCleanArchitecture.Api.Controllers
 {
     /// <summary>
     /// Контроллер для работы с погодой.
