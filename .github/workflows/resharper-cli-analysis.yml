@@ -30,8 +30,8 @@ jobs:
             UseCollectionExpression
             UnusedMember.Global
             ConvertToPrimaryConstructor
-            UnusedMember.Global              # член класса (например, метод, свойство, поле или событие), который не используется
-            PropertyCanBeMadeInitOnly.Global 
-            SuggestVarOrType_SimpleTypes     # Use explicit type (simple types)" on
-            ClassNeverInstantiated.Global    # Class 'Program' is never instantiated" on
+            UnusedMember.Global
+            PropertyCanBeMadeInitOnly.Global
+            SuggestVarOrType_SimpleTypes
+            ClassNeverInstantiated.Global
           dotnetVersion: ${{ steps.setup-dotnet.outputs.dotnet-version }}
