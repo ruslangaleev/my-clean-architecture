@@ -1,4 +1,4 @@
-namespace MyCleanArchitecture
+namespace MyCleanArchitecture.Api
 {
     /// <summary>
     /// Главный класс приложения.
