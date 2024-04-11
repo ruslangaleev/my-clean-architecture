@@ -1,0 +1,45 @@
+name: Cleanup After Main Workflow
+
+on:
+  workflow_run:
+    workflows: ["Main Workflow"] # Имя основного workflow
+    types:
+      - completed # запускается после завершения основного workflow
+
+jobs:
+  # данный шаг как заглушка
+  test-step:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+  # очистка закешированных папок и файлов на сервере где работает агент от github как self-hosted
+  # cleanup-github-agent-1:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     SSH_PRIVATE_KEY: ${{ secrets.VPS250297_GITHUB_AGENT_1_SSH_PRIVATE_KEY }}
+  #     SERVER_IP: ${{ secrets.VPS250297_SERVER_IP }}
+  #     USER_NAME: ${{ secrets.VPS250297_GITHUB_AGENT_1_USER_NAME }}
+  #     SERVER_PORT: ${{ secrets.VPS250297_SERVER_PORT }}      
+  #   if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }} # выполнится при любом исходе основного workflow
+  #   steps:
+  #   - name: Configure connection
+  #     run: |
+  #       mkdir -p ~/.ssh/
+  #       echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa.key
+  #       chmod 600 ~/.ssh/id_rsa.key
+  #       cat >>~/.ssh/config <<END
+  #       Host id_rsa
+  #         HostName $SERVER_IP
+  #         Port $SERVER_PORT
+  #         User $USER_NAME
+  #         IdentityFile ~/.ssh/id_rsa.key
+  #         StrictHostKeyChecking no
+  #       END
+  #   - name: Delete dotnet directory
+  #     run: ssh id_rsa "rm -r /home/github-agent/.dotnet || true"
+  #   - name: Delete nuget directory
+  #     run: ssh id_rsa "rm -r /home/github-agent/.nuget || true"
+  #   - name: Delete local directory
+  #     run: ssh id_rsa "rm -r /home/$USER_NAME/.local || true"
