@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: Build project
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -28,9 +29,9 @@ jobs:
       working-directory: MyCleanArchitecture
 
   inspection:
+    name: Inspection code
     needs: [build]
     runs-on: ubuntu-latest # or macos-latest, windows-latest
-    name: Inspection
     steps:
       - name: Checkout
         uses: actions/checkout@v4
