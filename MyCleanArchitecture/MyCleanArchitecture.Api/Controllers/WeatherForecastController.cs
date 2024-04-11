@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyCleanArchirecture.Controllers
+namespace MyCleanArchirectureApi.Controllers
 {
     /// <summary>
     /// Контроллер для работы с погодой.
@@ -14,14 +14,12 @@ namespace MyCleanArchirecture.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
         /// </summary>
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController()
         {
-            _logger = logger;
+
         }
 
         /// <summary>
