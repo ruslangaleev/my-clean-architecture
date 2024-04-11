@@ -24,6 +24,9 @@ jobs:
         uses: muno92/resharper_inspectcode@v1
         with:
           solutionPath: MyCleanArchitecture/MyCleanArchitecture.sln
+          # UnusedMember.Global - свойства, методы, поля и объекты которые не используются
+          # SuggestVarOrType_SimpleTypes - вместо var явно использовать тип
+          # ClassNeverInstantiated.Global - созданный класс нигде не используется
           ignoreIssueType: |
             UnusedAutoPropertyAccessor.Global
             ArrangeNamespaceBody
