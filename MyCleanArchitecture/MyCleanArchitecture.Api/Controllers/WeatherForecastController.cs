@@ -14,10 +14,6 @@ namespace MyCleanArchitecture.Api.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering"
         };
 
-        public WeatherForecastController()
-        {
-        }
-
         /// <summary>
         /// Получает информацию о текущей погоде.
         /// </summary>
