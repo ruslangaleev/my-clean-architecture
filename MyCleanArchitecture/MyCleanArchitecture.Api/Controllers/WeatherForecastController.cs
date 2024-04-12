@@ -14,9 +14,6 @@ namespace MyCleanArchitecture.Api.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering"
         };
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
-        /// </summary>
         public WeatherForecastController()
         {
         }

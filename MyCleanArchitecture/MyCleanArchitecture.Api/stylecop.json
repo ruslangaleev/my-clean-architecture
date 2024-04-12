@@ -1,0 +1,9 @@
+{
+    "settings": {
+      "documentationRules": {
+        "documentInterfaces": false,
+        "documentExposedElements": false,
+        "documentExposedConstructors": false
+      }
+    }
+  }
