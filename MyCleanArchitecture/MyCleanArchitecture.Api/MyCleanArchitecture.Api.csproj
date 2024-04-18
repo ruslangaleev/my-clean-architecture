@@ -17,4 +17,8 @@
 	<AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyCleanArchitecture.Application\MyCleanArchitecture.Application.csproj" />
+  </ItemGroup>
+
 </Project>

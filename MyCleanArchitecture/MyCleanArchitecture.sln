@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCleanArchitecture.Application", "MyCleanArchitecture.Application\MyCleanArchitecture.Application.csproj", "{45F0F44F-465A-4062-8BFF-B809A87005B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCleanArchitecture.Domain", "MyCleanArchitecture.Domain\MyCleanArchitecture.Domain.csproj", "{555AF49B-A079-40A3-8E6E-67D0249B8141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{63BC5909-8A87-4FDE-BA5D-6420AC31288D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63BC5909-8A87-4FDE-BA5D-6420AC31288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63BC5909-8A87-4FDE-BA5D-6420AC31288D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F0F44F-465A-4062-8BFF-B809A87005B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F0F44F-465A-4062-8BFF-B809A87005B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F0F44F-465A-4062-8BFF-B809A87005B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F0F44F-465A-4062-8BFF-B809A87005B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{555AF49B-A079-40A3-8E6E-67D0249B8141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{555AF49B-A079-40A3-8E6E-67D0249B8141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{555AF49B-A079-40A3-8E6E-67D0249B8141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{555AF49B-A079-40A3-8E6E-67D0249B8141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
